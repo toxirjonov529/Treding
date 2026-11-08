@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Savdogar — bozorni jonli kuzating va savdo qiling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;900&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eceff8;--panel:#fff;--ink:#171a3a;--mute:#6b7094;--line:#d9ddef;--up:#00a97a;--down:#f0384f;--acc:#5a3df0;--accink:#fff;--flashup:#c9f5e6;--flashdn:#ffd9de;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10122b;--panel:#191c3d;--ink:#eceeff;--mute:#9a9fc8;--line:#2a2e5a;--up:#2ee6a6;--down:#ff5c70;--acc:#8d77ff;--accink:#10122b;--flashup:#14473d;--flashdn:#4d2236;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10122b;--panel:#191c3d;--ink:#eceeff;--mute:#9a9fc8;--line:#2a2e5a;--up:#2ee6a6;--down:#ff5c70;--acc:#8d77ff;--accink:#10122b;--flashup:#14473d;--flashdn:#4d2236;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 Onest,system-ui,sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:Unbounded,Onest,sans-serif;line-height:1.1;margin:0;letter-spacing:-.02em}
+nav{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.logo{font:900 22px Unbounded,sans-serif;text-decoration:none;display:flex;gap:10px;align-items:center}
+.logo i{width:28px;height:28px;background:var(--acc);clip-path:polygon(0 100%,0 55%,30% 55%,30% 0,60% 0,60% 35%,100% 35%,100% 100%)}
+nav .r{display:flex;gap:10px;align-items:center}
+.btn{font:600 16px Onest,sans-serif;border:2px solid var(--ink);background:transparent;color:var(--ink);padding:11px 20px;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.p{background:var(--acc);border-color:var(--acc);color:var(--accink)}
+.tape{border-block:1px solid var(--line);overflow:hidden;white-space:nowrap;background:var(--panel)}
+.tape div{display:inline-flex;gap:36px;padding:10px 0;animation:tape 40s linear infinite}
+.tape span{font:500 14px Onest,sans-serif;display:inline-flex;gap:8px}
+@keyframes tape{to{transform:translateX(-50%)}}
+.up{color:var(--up)}.down{color:var(--down)}
+.hero{display:grid;grid-template-columns:1fr 1.25fr;gap:48px;align-items:center;padding:56px 0 72px}
+.hero h1{font-size:clamp(34px,5vw,60px);font-weight:900}
+.hero p{max-width:46ch;color:var(--mute);margin:22px 0 30px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero small{display:block;margin-top:18px;color:var(--mute);font-size:14px}
+.term{background:var(--panel);border:2px solid var(--ink);border-radius:20px;box-shadow:10px 10px 0 var(--acc);overflow:hidden}
+.th{display:flex;justify-content:space-between;align-items:flex-end;padding:18px 20px 6px;gap:12px;flex-wrap:wrap}
+.th b{font:700 15px Unbounded,sans-serif}
+.price{font:900 34px Unbounded,sans-serif;font-variant-numeric:tabular-nums}
+.chg{font-weight:600;font-variant-numeric:tabular-nums}
+.state{font-size:14px;font-weight:600;padding:4px 12px;border-radius:999px;border:1.5px solid currentColor}
+canvas#ch{display:block;width:100%;height:300px}
+.tf{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 20px 18px;border-top:1px solid var(--line);flex-wrap:wrap}
+.tf .b{display:flex;gap:10px}
+.buy,.sell{font:700 15px Onest,sans-serif;border:0;border-radius:12px;padding:12px 20px;color:#fff;cursor:pointer}
+.buy{background:var(--up)}.sell{background:var(--down)}
+.buy[aria-pressed=true],.sell[aria-pressed=true]{outline:3px solid var(--ink);outline-offset:2px}
+.pos{font-size:15px;color:var(--mute)}.pos b{font-variant-numeric:tabular-nums}
+section.s{padding:72px 0;border-top:1px solid var(--line)}
+section.s h2{font-size:clamp(26px,3.6vw,40px);max-width:20ch}
+section.s .lead{color:var(--mute);max-width:52ch;margin:14px 0 32px}
+.tw{overflow-x:auto;background:var(--panel);border:2px solid var(--ink);border-radius:16px}
+table{width:100%;border-collapse:collapse;min-width:620px}
+th,td{padding:14px 20px;text-align:right;font-variant-numeric:tabular-nums}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:500;color:var(--mute);font-size:14px;border-bottom:1px solid var(--line)}
+tr+tr td{border-top:1px solid var(--line)}
+td .sym{font-weight:600}td .nm{color:var(--mute);font-size:14px;margin-left:8px}
+td.px,td.cp{transition:background .9s}
+.fu{background:var(--flashup)!important;transition:none!important}.fd{background:var(--flashdn)!important;transition:none!important}
+svg.sp{width:110px;height:32px;vertical-align:middle}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:2px solid var(--ink);border-radius:16px;background:var(--panel);overflow:hidden}
+.feat div{padding:28px}
+.feat div+div{border-left:2px solid var(--ink)}
+.feat h3{font-size:19px;margin-bottom:10px}
+.feat p{margin:0;color:var(--mute)}
+.final{background:var(--acc);color:var(--accink);border-radius:28px;padding:56px 40px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-bottom:56px}
+.final h2{font-size:clamp(26px,3.6vw,42px);max-width:16ch}
+.final .btn{border-color:var(--accink);color:var(--accink)}
+.final .btn.p{background:var(--accink);color:var(--acc)}
+footer{padding:0 0 36px;color:var(--mute);font-size:14px}
+footer p{max-width:80ch;margin:0 0 8px}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:32px}.feat{grid-template-columns:1fr}.feat div+div{border-left:0;border-top:2px solid var(--ink)}.term{box-shadow:6px 6px 0 var(--acc)}}
+@media (prefers-reduced-motion:reduce){.tape div{animation:none}}
+nav{flex-wrap:wrap;gap:12px}nav .r{flex-wrap:wrap}
+.faq details{border-top:2px solid var(--ink);padding:18px 0}.faq details:last-child{border-bottom:2px solid var(--ink)}.faq summary{font:600 18px Onest,sans-serif;cursor:pointer}.faq p{color:var(--mute);margin:10px 0 0;max-width:62ch}
+.feat .pr{font:900 28px Unbounded,sans-serif;margin:0 0 10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a class="logo" href="#"><i></i>Savdogar</a><div class="r"><a class="btn" href="#bozor">Bozor</a><a class="btn" href="#tariflar">Tariflar</a><button class="btn" id="th" type="button">Tun / Kun</button><a class="btn p" href="#boshlash">Hisob ochish</a></div></nav>
+</div>
+<div class="tape" aria-hidden="true"><div id="tape"></div></div>
+
+<main class="wrap">
+<section class="hero">
+<div>
+<h1>Bozor ham oʻsadi, ham tushadi. Siz ikkalasida ham savdo qilasiz.</h1>
+<p>Savdogar — kripto bozori narxlarini bir ekranda jonli koʻrsatadigan savdo platformasi. Bitcoin, Ethereum va BNB narxlari 2026-yil noyabrdagi real koʻrsatkichlardan boshlanadi. Avval 10 000 $ demo hisobda mashq qiling.</p>
+<div class="cta"><a class="btn p" href="#boshlash">Bepul hisob ochish</a><a class="btn" href="#bozor">Narxlarni koʻrish</a></div>
+<small>Oʻngdagi grafik jonli ishlaydi: “Sotib olish” yoki “Sotish” ni bosib sinab koʻring.</small>
+</div>
+
+<div class="term" role="region" aria-label="Demo savdo oynasi">
+<div class="th">
+<div><b>BTC / USD</b><div class="price" id="px">—</div></div>
+<div style="text-align:right"><div class="chg" id="chg">—</div><span class="state" id="state">—</span></div>
+</div>
+<canvas id="ch" role="img" aria-label="Jonli shamchali grafik"></canvas>
+<div class="tf">
+<div class="b"><button class="buy" id="bb" aria-pressed="false">Sotib olish</button><button class="sell" id="bs" aria-pressed="false">Sotish</button></div>
+<div class="pos" id="pos" aria-live="polite">Pozitsiya yoʻq. Demo balans: <b>10 000 $</b></div>
+</div>
+</div>
+</section>
+
+<section class="s" id="bozor">
+<h2>Barcha narxlar bir jadvalda</h2>
+<p class="lead">Yashil — narx koʻtarildi, qizil — tushdi. Har bir yangilanishda katak rangi bir lahzaga yonadi. <span id="src"></span></p>
+<div class="tw"><table>
+<thead><tr><th>Aktiv</th><th>Narx</th><th>24 soat</th><th>Grafik</th></tr></thead>
+<tbody id="wl"></tbody>
+</table></div>
+</section>
+
+<section class="s">
+<h2>Savdoni boshlash uchun kerak boʻlgan hammasi</h2>
+<p class="lead">Ortiqcha tugmalar yoʻq. Faqat narx, grafik va sizning qaroringiz.</p>
+<div class="feat">
+<div><h3>Jonli grafiklar</h3><p>Narx har soniyada yangilanadi. Shamchali grafikda oʻsish va tushishni bir qarashda koʻrasiz.</p></div>
+<div><h3>Demo hisob</h3><p>10 000 $ virtual mablagʻ bilan xavfsiz mashq qiling. Xato qilsangiz, pul yoʻqolmaydi.</p></div>
+<div><h3>Narx ogohlantirishi</h3><p>Aktiv kerakli narxga yetganda xabar oling, ekranga qarab oʻtirish shart emas.</p></div>
+</div>
+</section>
+
+<section class="s" id="tariflar">
+<h2>Narxlar oddiy va ochiq</h2>
+<p class="lead">Yashirin toʻlovlar yoʻq. Hisob ochish va demo savdo bepul.</p>
+<div class="feat">
+<div><h3>Demo</h3><p class="pr">0 $</p><p>10 000 $ virtual balans, cheksiz mashq, barcha grafiklar.</p></div>
+<div><h3>Standart</h3><p class="pr">0,10%</p><p>Har bir bitimdan. Real savdo, narx ogohlantirishlari.</p></div>
+<div><h3>Pro</h3><p class="pr">0,05%</p><p>Har bir bitimdan. Katta hajm uchun past komissiya.</p></div>
+</div>
+</section>
+<section class="s faq">
+<h2>Koʻp beriladigan savollar</h2>
+<p class="lead"></p>
+<details><summary>Demo hisobda haqiqiy pul ishlatiladimi?</summary><p>Yoʻq. Demo hisobda faqat virtual 10 000 $ bor. Foyda ham, zarar ham haqiqiy emas.</p></details>
+<details><summary>Narxlar qayerdan olinadi?</summary><p>Kripto narxlari CoinGecko dan, valyuta kurslari open.er-api.com dan olinadi va har daqiqada yangilanadi. Internet boʻlmasa, oxirgi namunaviy narxlar koʻrsatiladi.</p></details>
+<details><summary>Qaysi aktivlar bor?</summary><p>Bitcoin, Ethereum, BNB, Solana, XRP, oltin (PAXG orqali), dollar/soʻm va yevro/dollar kurslari.</p></details>
+</section>
+<section id="boshlash" style="padding-top:72px">
+<div class="final">
+<h2>Birinchi savdoingizni bugun sinab koʻring</h2>
+<div style="display:flex;gap:12px;flex-wrap:wrap"><a class="btn p" href="#">Hisob ochish</a><a class="btn" href="#bozor">Narxlarni koʻrish</a></div>
+</div>
+</section>
+</main>
+
+<footer class="wrap">
+<p>Savdogar — namunaviy loyiha. Narxlar internet boʻlsa CoinGecko va open.er-api.com dan olinadi, aks holda 2026-yil 6–7-noyabrdagi namunaviy narxlar koʻrsatiladi. Savdo oynasi esa demo.</p>
+<p>Moliyaviy bozorlarda savdo qilish yoʻqotish xavfini oʻz ichiga oladi.</p>
+</footer>
+
+<script>
+(function(){
+var R=Math.random,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var fmt=function(n,d){return n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d})};
+var css=function(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()};
+
+/* ---- Hero chart ---- */
+var cv=document.getElementById('ch'),cx=cv.getContext('2d'),N=48,price=75810,drift=1,left=0,tick=0;
+var candles=[];
+function mk(o){var c={o:o,h:o,l:o,c:o};return c}
+var p=price;for(var i=0;i<N;i++){var c=mk(p);for(var k=0;k<4;k++){p+=(R()-.45)*90;c.c=p;c.h=Math.max(c.h,p);c.l=Math.min(c.l,p)}candles.push(c)}
+price=p;
+var side=0,entry=0,qty=0.1;
+function size(){var r=devicePixelRatio||1,w=cv.clientWidth,h=cv.clientHeight;cv.width=w*r;cv.height=h*r;cx.setTransform(r,0,0,r,0,0);draw()}
+function draw(){
+var w=cv.clientWidth,h=cv.clientHeight,up=css('--up'),dn=css('--down'),ln=css('--line'),mu=css('--mute'),ink=css('--ink');
+cx.clearRect(0,0,w,h);
+var lo=1e9,hi=0;candles.forEach(function(c){lo=Math.min(lo,c.l);hi=Math.max(hi,c.h)});
+var pad=(hi-lo)*.12;lo-=pad;hi+=pad;
+var pr=62,cw=(w-pr)/N,y=function(v){return h-(v-lo)/(hi-lo)*h};
+cx.strokeStyle=ln;cx.lineWidth=1;cx.fillStyle=mu;cx.font='12px Onest,sans-serif';
+for(var g=1;g<5;g++){var gy=h/5*g;cx.beginPath();cx.moveTo(0,gy);cx.lineTo(w-pr,gy);cx.stroke();cx.fillText(fmt(hi-(hi-lo)/5*g,0),w-pr+8,gy+4)}
+candles.forEach(function(c,i){var x=i*cw+cw/2,u=c.c>=c.o,col=u?up:dn;cx.strokeStyle=col;cx.fillStyle=col;cx.lineWidth=1.5;
+cx.beginPath();cx.moveTo(x,y(c.h));cx.lineTo(x,y(c.l));cx.stroke();
+var t=y(Math.max(c.o,c.c)),b=y(Math.min(c.o,c.c));cx.fillRect(x-cw*.32,t,cw*.64,Math.max(2,b-t))});
+if(side){cx.setLineDash([6,5]);cx.strokeStyle=ink;cx.lineWidth=1.5;cx.beginPath();cx.moveTo(0,y(entry));cx.lineTo(w-pr,y(entry));cx.stroke();cx.setLineDash([]);cx.fillStyle=ink;cx.fillText('kirish',6,y(entry)-6)}
+var last=candles[candles.length-1],lc=last.c>=last.o?up:dn,ly=y(last.c);
+cx.strokeStyle=lc;cx.setLineDash([2,3]);cx.beginPath();cx.moveTo(0,ly);cx.lineTo(w-pr,ly);cx.stroke();cx.setLineDash([]);
+cx.fillStyle=lc;cx.fillRect(w-pr,ly-10,pr,20);cx.fillStyle='#fff';cx.font='600 12px Onest,sans-serif';cx.fillText(fmt(last.c,0),w-pr+6,ly+4)}
+var open0=price;
+function ui(){
+var d=price-open0,pc=d/open0*100,e=document.getElementById('chg');
+document.getElementById('px').textContent='$'+fmt(price,2);
+e.textContent=(d>=0?'+':'')+fmt(d,2)+' ('+(d>=0?'+':'')+fmt(pc,2)+'%)';e.className='chg '+(d>=0?'up':'down');
+var s=document.getElementById('state'),rising=drift>0;s.textContent=rising?'Bozor oʻsmoqda':'Bozor tushmoqda';s.className='state '+(rising?'up':'down');
+var pe=document.getElementById('pos');
+if(side){var pl=(price-entry)*side*qty;pe.innerHTML=(side>0?'Sotib olingan':'Sotilgan')+' 0.1 BTC · Natija: <b class="'+(pl>=0?'up':'down')+'">'+(pl>=0?'+':'−')+'$'+fmt(Math.abs(pl),2)+'</b>'}
+else pe.innerHTML='Pozitsiya yoʻq. Demo balans: <b>10 000 $</b>'}
+function step(){
+tick++;if(--left<=0){drift=R()<.5?1:-1;left=8+Math.floor(R()*10)}
+price+=drift*(10+R()*55)+(R()-.5)*80;
+var c=candles[candles.length-1];c.c=price;c.h=Math.max(c.h,price);c.l=Math.min(c.l,price);
+if(tick%5===0){candles.shift();candles.push(mk(price))}
+ui();draw()}
+['bb','bs'].forEach(function(id,i){var b=document.getElementById(id);b.addEventListener('click',function(){var s=i?-1:1;if(side===s){side=0}else{side=s;entry=price}
+document.getElementById('bb').setAttribute('aria-pressed',side===1);document.getElementById('bs').setAttribute('aria-pressed',side===-1);ui();draw()})});
+addEventListener('resize',size);size();ui();setInterval(step,reduce?1800:850);
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',draw);
+
+/* ---- Watchlist + live data ---- */
+var A=[['BTC','Bitcoin',75810,0,.09,'bitcoin'],['ETH','Ethereum',2236.72,2,.55,'ethereum'],['BNB','BNB',690.54,2,-3.25,'binancecoin'],['SOL','Solana',null,2,0,'solana'],['XRP','XRP',null,4,0,'ripple'],['XAU','Oltin (PAXG)',null,2,0,'pax-gold'],['USD/UZS','Dollar kursi',null,0,null,null],['EUR/USD','Yevro',null,4,null,null]]
+.map(function(a){var o={s:a[0],n:a[1],p:a[2],d:a[3],id:a[5],o:a[2]?a[2]/(1+a[4]/100):null,h:[]};hist(o);return o});
+function hist(a){a.h=[];if(!a.p)return;var v=a.p;for(var i=0;i<24;i++){a.h.unshift(v);v/=1+(R()-.5)*.012}}
+var tb=document.getElementById('wl');
+A.forEach(function(a){var tr=document.createElement('tr');tr.innerHTML='<td><span class="sym">'+a.s+'</span><span class="nm">'+a.n+'</span></td><td class="px"></td><td class="cp"></td><td><svg class="sp" viewBox="0 0 110 32" aria-hidden="true"><polyline fill="none" stroke-width="2" stroke-linejoin="round"/></svg></td>';tb.appendChild(tr);a.tr=tr});
+function spark(a){var pl=a.tr.querySelector('polyline');if(a.h.length<2){pl.setAttribute('points','');return}var lo=Math.min.apply(0,a.h),hi=Math.max.apply(0,a.h),pts=a.h.map(function(v,i){return(i/(a.h.length-1)*110).toFixed(1)+','+(30-(v-lo)/(hi-lo||1)*28).toFixed(1)}).join(' ');
+pl.setAttribute('points',pts);pl.setAttribute('stroke',(a.o==null||a.p>=a.o)?css('--up'):css('--down'))}
+function tape(){var h='';A.concat(A).forEach(function(a){if(!a.p)return;var c=a.o?(a.p/a.o-1)*100:null;h+='<span><b>'+a.s+'</b> '+fmt(a.p,a.d)+(c==null?'':' <span class="'+(c>=0?'up':'down')+'">'+(c>=0?'\u25b2':'\u25bc')+' '+fmt(Math.abs(c),2)+'%</span>')+'</span>'});document.getElementById('tape').innerHTML=h}
+function render(flash){A.forEach(function(a,i){var px=a.tr.children[1],cp=a.tr.children[2];
+if(!a.p){px.textContent='yuklanmoqda\u2026';cp.textContent='\u2014';spark(a);return}
+px.textContent=fmt(a.p,a.d);
+if(a.o==null){cp.textContent='\u2014';cp.className='cp'}else{var c=(a.p/a.o-1)*100;cp.textContent=(c>=0?'\u25b2 +':'\u25bc ')+fmt(c,2)+'%';cp.className='cp '+(c>=0?'up':'down')}
+spark(a);
+if(flash&&flash[i]){var k=flash[i]>0?'fu':'fd';px.classList.add(k);setTimeout(function(){px.classList.remove(k)},60)}})}
+var src=document.getElementById('src');
+function live(){
+fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple,pax-gold&vs_currencies=usd&include_24hr_change=true').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){
+A.forEach(function(a){var d=j[a.id];if(!d)return;a.p=d.usd;a.o=a.p/(1+(d.usd_24h_change||0)/100);hist(a);
+if(a.s==='BTC'){var dl=a.p-price;candles.forEach(function(c){c.o+=dl;c.h+=dl;c.l+=dl;c.c+=dl});price=a.p;open0=a.o;if(side)entry+=dl;ui();draw()}});
+src.textContent='Jonli narx: CoinGecko.';render();tape()}).catch(function(){src.textContent='Namunaviy narx: internetga ulanib bo\u02bblmadi.'});
+fetch('https://open.er-api.com/v6/latest/USD').then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){
+var u=A[6],e=A[7];u.p=j.rates.UZS;u.o=null;hist(u);e.p=1/j.rates.EUR;e.o=null;hist(e);render();tape()}).catch(function(){})}
+tape();render();live();setInterval(live,60000);
+setInterval(function(){var fl={};A.forEach(function(a,i){if(a.p&&R()<.6){var m=1+(R()-.5)*.004;fl[i]=m>1?1:-1;a.p*=m;a.h.shift();a.h.push(a.p)}});render(fl)},reduce?3000:1300);
+setInterval(tape,12000);
+document.getElementById('th').addEventListener('click',function(){var d=document.documentElement,dark=d.dataset.theme?d.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;d.dataset.theme=dark?'light':'dark';draw();render();tape()});
+})();
+</script>
+</body>
+</html>
